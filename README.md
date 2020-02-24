@@ -19,6 +19,9 @@
     - グループ編集
     - グループへのタグ付け
     - グループ削除
+    - タイムライン（日々の報告）
+    - 掲示板
+        - コメント
 
 - タグ作成機能（seedデータで作成）
     - タグ作成
@@ -49,5 +52,4 @@ https://cacoo.com/diagrams/pSKOXxBigOv33Kym/A7D20
 - carrierwave
 - mini_magick
 - kaminari
-- fog-aws
 - ransack
