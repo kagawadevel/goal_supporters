@@ -1,0 +1,9 @@
+<h1>グループページ</h1>
+
+<div>
+  <p>グループ名: <%= @group.name %></p>
+  <p>グループ紹介: <%= @group.introduce %></p>
+
+  <%= link_to "グループ情報を編集する", edit_group_path(@group) %>
+  <%= link_to "グループ情報を削除する", @group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
+</div>
