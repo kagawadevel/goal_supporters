@@ -1,2 +1,12 @@
-<h1>Group#index</h1>
-<p>Find me in app/views/group/index.html.erb</p>
+<h1>グループ一覧</h1>
+
+<% @groups.each do |group| %>
+  <div>
+    <p><strong>グループ名：</strong><%= group.name %></p>
+  </div>
+
+  <div>
+    <%= link_to '確認', group_path(group.id), class: "btn btn-info" %>
+  </div>
+
+<% end %>
