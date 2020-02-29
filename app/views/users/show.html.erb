@@ -5,4 +5,5 @@
   <p>メールアドレス: <%= @user.email %></p>
 
   <%= link_to "ユーザー情報を編集する", edit_user_path(@user) %>
+  <%= link_to "ユーザー情報を削除する", @user, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
 </div>
