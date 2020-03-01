@@ -1,5 +1,6 @@
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :destroy, :update]
+  before_action :authenticate_user!
 
   def index
     @timelines = Timeline.all
@@ -9,7 +10,7 @@ class TimelinesController < ApplicationController
   end
 
   def new
-    @timeline = Timeline.new
+    @timeline = Timeline.new(group_id: params[:group_id])
   end
 
   def create
