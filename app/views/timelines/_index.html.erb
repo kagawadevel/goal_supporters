@@ -1,0 +1,16 @@
+<h1>最近の報告一覧</h1>
+
+<p>ーーーーーーーーーーーーーーーーここからーーーーーーーーーーーーーーーーーー</p>
+
+<% timelines.each do |timeline| %>
+  <div>
+    <p><strong>タイムライン名：</strong><%= timeline.content %></p>
+  </div>
+
+  <div>
+    <%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %>
+  </div>
+
+<% end %>
+
+<p>ーーーーーーーーーーーーーーーーここまでーーーーーーーーーーーーーーーーーー</p>
