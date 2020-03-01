@@ -1,21 +1,21 @@
-<h1>最近の報告一覧</h1>
+<div class="timeline">
 
-<p>ーーーーーーーーーーーーーーーーここからーーーーーーーーーーーーーーーーーー</p>
+  <h1>最近の報告一覧</h1>
 
-<% if timelines.nil? %>
-  <p>まだこのグループには報告がありません</p>
-<% else %>
+  <% if timelines.count >= 1 %>
+    <table class="table table-hover">
+    <% timelines.each do |timeline| %>
+        <tr>
+        <td><p><strong>投稿者：</strong><%= timeline.user.name %></p></td>
+          <td><p><strong>投稿内容：</strong><%= timeline.content %></p></td>
+          <td><%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %></td>
+          <td><%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %></td>
+          <td><%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+        </tr>
+    <% end %>
+    </table>
+  <% else %>
+      <p>まだこのグループには報告がありません</p>
+  <% end %>
 
-<% timelines.each do |timeline| %>
-  <div>
-    <p><strong>投稿者：</strong><%= timeline.user.name %></p>
-    <p><strong>投稿内容：</strong><%= timeline.content %></p>
-    <%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %>
-    <%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %>
-    <%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %>
-  </div>
-
-<% end %>
-<% end %>
-
-<p>ーーーーーーーーーーーーーーーーここまでーーーーーーーーーーーーーーーーーー</p>
+</div>

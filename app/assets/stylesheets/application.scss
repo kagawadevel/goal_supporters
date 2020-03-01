@@ -1,9 +1,14 @@
 @import "bootstrap";
+@import "timelines";
+@import "boards";
+@import "group";
 
 .footer {
   position: absolute;
   bottom: 0;
   width: 78%;
   height: 60px;
-  background-color: #e3f2fd;
+  background-color: none;
 }
+
+
