@@ -10,6 +10,31 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="container">
+      <% if user_signed_in? %>
+        <nav class="navbar">
+          <ul>
+            <li><%= link_to 'マイページ', user_path(current_user), class: 'navbar-brand' %></li>
+            <li><%= link_to '目標一覧', goals_path, class: 'navbar-brand' %></li>
+            <li><%= link_to '参加中のグループ一覧', groups_path, class: 'navbar-brand' %></li>
+            <li><%= link_to '新規目標作成', new_goal_path, class: 'navbar-brand' %></li>
+            <li><%= link_to '新規グループ作成', new_group_path, class: 'navbar-brand' %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </nav>
+      <% else %>
+        <nav class="navbar">
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        </nav>
+      <% end %>
+
+    </header>
+
+
+
+  <%= yield %>
+
   </body>
+
 </html>
