@@ -1,5 +1,6 @@
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :destroy, :update]
+  before_action :authenticate_user!
 
   def index
     @timelines = Timeline.all
