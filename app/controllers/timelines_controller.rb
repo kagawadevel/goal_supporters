@@ -26,7 +26,7 @@ class TimelinesController < ApplicationController
 
   def update
     if @timeline.update(timeline_params)
-      redirect_to timeline_path(@timeline), notice: "タイムライン情報を更新しました"
+      redirect_to group_path(@timeline.group_id), notice: "削除しました"
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class TimelinesController < ApplicationController
 
   def destroy
     @timeline.destroy
-    redirect_to group_path(@timeline.group_id), notice: "報告しました"
+    redirect_to group_path(@timeline.group_id), notice: "削除しました"
   end
 
   private
