@@ -1,0 +1,12 @@
+<h1>目標一覧</h1>
+
+<% @goals.each do |goal| %>
+  <div>
+    <p><strong>目標名：</strong><%= goal.name %></p>
+  </div>
+
+  <div>
+    <%= link_to '確認', goal_path(goal.id), class: "btn btn-info" %>
+  </div>
+
+<% end %>

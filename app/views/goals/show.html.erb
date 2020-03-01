@@ -1,0 +1,9 @@
+<h1>目標ページ</h1>
+
+<div>
+  <p>目標名: <%= @goal.name %></p>
+  <p>目標紹介: <%= @goal.detail %></p>
+
+  <%= link_to "目標情報を編集する", edit_goal_path(@goal) %>
+  <%= link_to "目標情報を削除する", @goal, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
+</div>
