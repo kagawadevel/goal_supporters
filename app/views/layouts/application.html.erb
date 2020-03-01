@@ -19,7 +19,7 @@
             <li><%= link_to '参加可能なグループ一覧', groups_path, class: 'navbar-brand' %></li>
             <li><%= link_to '新規目標作成', new_goal_path, class: 'navbar-brand' %></li>
             <li><%= link_to '新規グループ作成', new_group_path, class: 'navbar-brand' %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-brand'%></li>
           </ul>
         </nav>
       </header>
