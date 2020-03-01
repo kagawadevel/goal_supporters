@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_051157) do
+ActiveRecord::Schema.define(version: 2020_03_01_050857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2020_02_29_051157) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "timelines", force: :cascade do |t|
+    t.text "content"
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_timelines_on_group_id"
+    t.index ["user_id"], name: "index_timelines_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
@@ -43,4 +53,6 @@ ActiveRecord::Schema.define(version: 2020_02_29_051157) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "timelines", "groups"
+  add_foreign_key "timelines", "users"
 end

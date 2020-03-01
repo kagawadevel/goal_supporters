@@ -3,7 +3,12 @@
 <div>
   <p>グループ名: <%= @group.name %></p>
   <p>グループ紹介: <%= @group.introduce %></p>
+</div>
+
+<%= link_to '活動を報告する', controller: "timelines", action: "new", group_id: 3, user_id: 3 %>
+
+
+  <%= render partial: 'timelines/index', locals: { timelines: @timelines } %>
 
   <%= link_to "グループ情報を編集する", edit_group_path(@group) %>
   <%= link_to "グループ情報を削除する", @group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
-</div>

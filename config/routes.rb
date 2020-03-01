@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :goals
   resources :users
   resources :groups
+  resources :timelines
 end

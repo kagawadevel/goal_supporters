@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @timelines = Timeline.all
   end
 
   def new

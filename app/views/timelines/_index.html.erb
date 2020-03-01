@@ -1,0 +1,18 @@
+<h1>最近の報告一覧</h1>
+
+<p>ーーーーーーーーーーーーーーーーここからーーーーーーーーーーーーーーーーーー</p>
+
+<% timelines.each do |timeline| %>
+  <div>
+    <p><strong>タイムライン名：</strong><%= timeline.content %></p>
+  </div>
+
+  <div>
+    <%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %>
+    <%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %>
+    <%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %>
+  </div>
+
+<% end %>
+
+<p>ーーーーーーーーーーーーーーーーここまでーーーーーーーーーーーーーーーーーー</p>
