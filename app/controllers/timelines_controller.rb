@@ -9,7 +9,7 @@ class TimelinesController < ApplicationController
   end
 
   def new
-    @timeline = Timeline.new
+    @timeline = Timeline.new(group_id: params[:group_id])
   end
 
   def create
