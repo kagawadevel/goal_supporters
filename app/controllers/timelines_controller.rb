@@ -34,7 +34,7 @@ class TimelinesController < ApplicationController
 
   def destroy
     @timeline.destroy
-    redirect_to timelines_path
+    redirect_to group_path(@timeline.group_id), notice: "報告しました"
   end
 
   private
