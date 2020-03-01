@@ -1,16 +1,20 @@
-<h1>最近の報告一覧</h1>
+<h1>グループの掲示板一覧</h1>
 
 <p>ーーーーーーーーーーーーーーーーここからーーーーーーーーーーーーーーーーーー</p>
 
-<% boards.each do |board| %>
-  <div>
-    <p><strong>投稿者：</strong><%= board.user.name %></p>
-    <p><strong>投稿内容：</strong><%= board.content %></p>
-    <%= link_to '確認', board_path(board.id), class: "btn btn-info" %>
-    <%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %>
-    <%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %>
-  </div>
+<% if boards.nil? %>
+  <p>まだこのグループには掲示板がありません</p>
+<% else %>
 
+  <% boards.each do |board| %>
+    <div>
+      <p><strong>掲示板名：</strong><%= board.title %></p>
+      <%= link_to '確認', board_path(board.id), class: "btn btn-info" %>
+      <%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %>
+      <%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %>
+    </div>
+
+  <% end %>
 <% end %>
 
 <p>ーーーーーーーーーーーーーーーーここまでーーーーーーーーーーーーーーーーーー</p>

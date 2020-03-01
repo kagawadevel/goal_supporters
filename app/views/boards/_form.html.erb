@@ -13,16 +13,17 @@
 <%= form_with( model: board, local: true ) do |f| %>
 
   <div>
-    <%= f.label :name, '投稿内容' %>
-    <%= f.text_field :content %>
+    <%= f.label :title, '掲示板タイトル' %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :detail, '掲示板詳細' %>
+    <%= f.text_field :detail %>
   </div>
 
   <%= f.hidden_field :group_id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <div>
-    <p>投稿に関連する目標をラジオボタンで表示（あとで機能追加）</p>
-  </div>
 
   <div>
     <%= f.submit '送信' %>

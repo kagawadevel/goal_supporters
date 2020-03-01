@@ -2,6 +2,10 @@
 
 <p>ーーーーーーーーーーーーーーーーここからーーーーーーーーーーーーーーーーーー</p>
 
+<% if timelines.nil? %>
+  <p>まだこのグループには報告がありません</p>
+<% else %>
+
 <% timelines.each do |timeline| %>
   <div>
     <p><strong>投稿者：</strong><%= timeline.user.name %></p>
@@ -11,6 +15,7 @@
     <%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %>
   </div>
 
+<% end %>
 <% end %>
 
 <p>ーーーーーーーーーーーーーーーーここまでーーーーーーーーーーーーーーーーーー</p>

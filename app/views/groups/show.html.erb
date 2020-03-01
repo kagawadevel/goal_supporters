@@ -6,9 +6,10 @@
 </div>
 
 <%= link_to '活動を報告する', controller: "timelines", action: "new", group_id: @group.id, user_id: current_user.id %>
+<%= render partial: 'timelines/index', locals: { timelines: @timelines } %>
 
-
-  <%= render partial: 'timelines/index', locals: { timelines: @timelines } %>
+<%= link_to '掲示板を新しく作成する', controller: "boards", action: "new", group_id: @group.id %>
+<%= render partial: 'boards/index', locals: { boards: @boards } %>
 
   <%= link_to "グループ情報を編集する", edit_group_path(@group) %>
   <%= link_to "グループ情報を削除する", @group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
