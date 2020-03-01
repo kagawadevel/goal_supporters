@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users
   resources :groups
   resources :timelines
+  resources :boards
 end

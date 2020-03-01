@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
   def show
     @timelines = Timeline.all
+    @boards = Board.all
   end
 
   def new

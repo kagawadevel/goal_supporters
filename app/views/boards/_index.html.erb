@@ -1,0 +1,19 @@
+<div class="board">
+  <h1>グループの掲示板一覧</h1>
+
+  <% if boards.count >= 1 %>
+    <table class="table table-hover">
+    <% boards.each do |board| %>
+        <tr>
+          <td><p><strong>掲示板名：</strong><%= board.title %></p></td>
+          <td><%= link_to '確認', board_path(board.id), class: "btn btn-info" %><td>
+          <td><%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %><td>
+          <td><%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %><td>
+        </td>
+      <% end %>
+    </table>
+  <% else %>
+      <p>まだこのグループには掲示板がありません</p>
+  <% end %>
+
+</div>
