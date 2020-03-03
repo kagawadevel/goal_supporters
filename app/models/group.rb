@@ -12,4 +12,6 @@
 class Group < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   has_many :timelines
+  has_many :boards
+  has_many :comments
 end

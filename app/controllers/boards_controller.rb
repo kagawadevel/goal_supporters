@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new(board_id: params[:board_id], group_id: params[:group_id])
   end
 
   def new
