@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   def show
     @timelines = Timeline.all
     @boards = Board.all
+    @join = UserGroupRelation.find_by(user_id: current_user.id, group_id: params[:id])
   end
 
   def new
