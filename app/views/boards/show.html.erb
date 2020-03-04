@@ -1,6 +1,8 @@
 <h1><strong>掲示板タイトル：</strong><%= @board.title %></h1>
 <p><span>掲示板詳細:</span><%= @board.detail %></p>
 
+<%= render 'shared/error_messages' %>
+
 <%= render partial: 'comments/comment_form', locals: { comment: @comment } %>
 
 <%= render @board.comments %>

@@ -22,5 +22,5 @@
 class Comment < ApplicationRecord
   belongs_to :group
   belongs_to :board
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 1000 }
 end

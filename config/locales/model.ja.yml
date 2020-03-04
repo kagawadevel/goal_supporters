@@ -1,8 +1,17 @@
 ja:
   activerecord:
+    errors:
+      models:
+        comment:
+          attributes:
+            content:
+              blank: "空欄です"
     models:
       blog: "ブログ"
       user: "ユーザー"
+      comment:
+        attributes:
+          content: "本文"
     attributes:
       blog:
         title: "タイトル"

@@ -7,8 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to board_path(@comment.board, board_id: @comment.board.id, group_id: @comment.group.id), notice: "コメントを投稿しました"
     else
-      @a = "うああああ"
-      flash[:danger] = "投稿に失敗しました"
+      flash[:error_messages] = @comment.errors.full_messages
       @board = Board.find(params[:comment][:board_id])
       render template: "boards/show"
 
