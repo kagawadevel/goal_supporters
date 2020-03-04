@@ -5,6 +5,8 @@
 
 <%= render partial: 'comments/comment_form', locals: { comment: @comment } %>
 
-<%= render @board.comments %>
+<div class="board-comment">
+  <%= render partial: 'comments/index', locals: { comments: @comments } %>
+</div>
 
 

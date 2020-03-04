@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #  board_id   :bigint
 #  group_id   :bigint
+#  user_id    :bigint
 #
 # Indexes
 #
