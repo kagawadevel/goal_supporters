@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @timelines = Timeline.all
+    @timelines = Timeline.where(group_id: @group.id)
     @boards = Board.all
     @join = UserGroupRelation.find_by(user_id: current_user.id, group_id: params[:id])
   end
