@@ -4,6 +4,8 @@
   <p>ユーザー名: <%= @user.name %></p>
   <p>メールアドレス: <%= @user.email %></p>
 
-  <%= link_to "ユーザー情報を編集する", edit_user_path(@user) %>
-  <%= link_to "ユーザー情報を削除する", @user, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
+  <%= render partial: 'user_group_relations/index', locals: { joined_groups: @joined_groups } %>
+
+  <%= link_to "ユーザー情報を編集する", edit_user_path(@user), class: "btn btn-primary" %>
+  <%= link_to "アプリを退会する", @user, method: :delete, data: { confirm: '本当に削除してもいいですか？　※ユーザー情報は削除されます！' }, class: "btn btn-danger" %>
 </div>

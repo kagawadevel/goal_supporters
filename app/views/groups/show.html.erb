@@ -5,6 +5,12 @@
   <p>グループ紹介: <%= @group.introduce %></p>
 </div>
 
+<% if @join.present? %>
+  <%= link_to 'グループを抜ける', user_group_relation_path(joined_id: @join.id), class: "btn btn-danger", method: :delete, data: { confirm: '本当にグループを抜けて良いですか？' } %>
+<% else %>
+  <%= link_to 'グループに参加する',  user_group_relations_path(group_id: @group.id), class: "btn btn-primary", method: :post %>
+<% end %>
+
 <div class="group-timeline">
 <%= link_to '活動を報告する', controller: "timelines", action: "new", group_id: @group.id, user_id: current_user.id %>
 <%= render partial: 'timelines/index', locals: { timelines: @timelines } %>

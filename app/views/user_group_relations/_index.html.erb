@@ -1,0 +1,17 @@
+<div class="joined_groups">
+  <h1>参加中のグループ一覧</h1>
+
+  <% if joined_groups.count >= 1 %>
+    <table class="table table-hover">
+      <% joined_groups.each do |joined_group| %>
+        <tr>
+          <td><p><strong>グループ名：</strong><%= joined_group.name %></p></td>
+          <td><%= link_to 'グループページへ', group_path(joined_group.id), class: "btn btn-info" %><td>
+        </td>
+      <% end %>
+    </table>
+  <% else %>
+    <p>まだグループには参加していません</p>
+  <% end %>
+
+</div>

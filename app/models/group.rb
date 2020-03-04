@@ -14,4 +14,6 @@ class Group < ApplicationRecord
   has_many :timelines
   has_many :boards
   has_many :comments
+  has_many :user_group_relations, dependent: :destroy
+  has_many :users, through: :user_group_relations, source: :user
 end
