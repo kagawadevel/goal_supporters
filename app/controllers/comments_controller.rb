@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       redirect_to board_path(@comment.board, board_id: @comment.board.id, group_id: @comment.group.id, user_id: @comment.user_id), notice: "コメントを投稿しました"
     else
       flash[:error_messages] = @comment.errors.full_messages
-      @comments = Comment.all
+      @comments = Comment.where(board_id: params[:comment][:board_id])
       @board = Board.find(params[:comment][:board_id])
       render template: "boards/show"
     end
