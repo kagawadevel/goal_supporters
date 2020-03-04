@@ -34,5 +34,5 @@ class User < ApplicationRecord
   has_many :timelines, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :user_group_relations, dependent: :destroy
-  has_many :groups, through: :user_group_relations, source: group
+  has_many :groups, through: :user_group_relations, source: :group
 end

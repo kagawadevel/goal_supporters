@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'user_group_relations/index'
-  get 'user_group_relations/create'
-  get 'user_group_relations/destroy'
   devise_for :users
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -15,4 +12,5 @@ Rails.application.routes.draw do
   resources :timelines
   resources :boards
   resources :comments
+  resources :user_group_relations, only: %i[index create destroy]
 end
