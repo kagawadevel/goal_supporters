@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @joined_groups = current_user.groups
   end
 
   def new
