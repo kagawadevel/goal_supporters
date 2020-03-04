@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to @comment.board, notice: "コメントを投稿しました"
+      redirect_to board_path(@comment.board, board_id: @comment.board.id, group_id: @comment.group.id), notice: "コメントを投稿しました"
     else
-      flash[:danger]= "投稿に失敗しました"
+      flash[:danger] = "投稿に失敗しました"
       render 'boards/show'
 
       失敗した場合を要修正
