@@ -1,12 +1,15 @@
 <h1>グループ一覧</h1>
 
 <% @groups.each do |group| %>
-  <div>
-    <p><strong>グループ名：</strong><%= group.name %></p>
-  </div>
 
-  <div>
-    <%= link_to '確認', group_path(group.id), class: "btn btn-info" %>
-  </div>
+  <% if UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id) %>
+  <% else %>
+    <div>
+      <p><strong>グループ名：</strong><%= group.name %></p>
+    </div>
+    <div>
+      <%= link_to '確認', group_path(group.id), class: "btn btn-info" %>
+    </div>
+  <% end %>
 
 <% end %>

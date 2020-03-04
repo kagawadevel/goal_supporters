@@ -19,7 +19,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to @group, notice: "ユーザーを作成しました"
+      current_user.user_group_relations.create(group_id: @group.id)
+      redirect_to @group, notice: "グループを作成しました"
     else
       render 'new'
     end
@@ -30,7 +31,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to group_path(@group), notice: "ユーザー情報を更新しました"
+      redirect_to group_path(@group), notice: "グループ情報を更新しました"
     else
       render 'edit'
     end
