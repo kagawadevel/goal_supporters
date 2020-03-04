@@ -31,8 +31,8 @@
         </header>
       <% end %>
 
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
+      <% if flash[:notice] %>
+        <div class="alert alert-primary"><%= flash[:notice] %></div>
       <% end %>
 
       <% if alert %>
