@@ -12,6 +12,10 @@
 #  updated_at :datetime         not null
 #
 class Goal < ApplicationRecord
+
+  has_many :praises, dependent: :destroy
+  belongs_to :user
+
   validates :name, presence: true, length: { maximum: 30 }
 
   validates :detail, presence: true, length: { maximum: 225 }
