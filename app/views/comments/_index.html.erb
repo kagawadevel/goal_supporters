@@ -1,0 +1,19 @@
+<div class="comment">
+
+  <h1>最近のコメント一覧</h1>
+
+  <% if comments.count >= 1 %>
+    <table class="table table-hover">
+      <% comments.each do |comment| %>
+        <tr>
+          <td><p><strong>投稿者：</strong><%= comment.user.name %></p></td>
+          <td><p><strong>投稿内容：</strong><%= comment.content %></p></td>
+          <td><%= link_to '削除', comment, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>まだこのグループにはコメントがありません</p>
+  <% end %>
+
+</div>

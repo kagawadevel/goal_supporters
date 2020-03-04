@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_01_092244) do
+ActiveRecord::Schema.define(version: 2020_03_04_105017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2020_03_01_092244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_boards_on_group_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "group_id"
+    t.bigint "board_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["board_id"], name: "index_comments_on_board_id"
+    t.index ["group_id"], name: "index_comments_on_group_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -68,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_03_01_092244) do
   end
 
   add_foreign_key "boards", "groups"
+  add_foreign_key "comments", "boards"
+  add_foreign_key "comments", "groups"
   add_foreign_key "timelines", "groups"
   add_foreign_key "timelines", "users"
 end

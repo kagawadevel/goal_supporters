@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :groups
   resources :timelines
   resources :boards
+  resources :comments
 end
