@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'praises/update'
   devise_for :users
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
