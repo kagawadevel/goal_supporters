@@ -3,7 +3,6 @@
 # Table name: goals
 #
 #  id         :bigint           not null, primary key
-#  count      :integer
 #  detail     :string
 #  finished   :boolean          default("false")
 #  informed   :integer          default("0")
