@@ -19,10 +19,10 @@
 
   <div>
     <%= f.label :introduce, '目標詳細'%>
-    <%= f.text_field :detail %>
+    <%= f.text_area :detail %>
   </div>
 
-
+  <%= f.hidden_field :user_id %>
 
   <div>
     <%= f.submit '送信' %>

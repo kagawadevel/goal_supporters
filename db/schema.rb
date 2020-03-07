@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_113005) do
+ActiveRecord::Schema.define(version: 2020_03_07_044110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,12 @@ ActiveRecord::Schema.define(version: 2020_03_04_113005) do
     t.string "name"
     t.string "detail"
     t.integer "past"
-    t.integer "count"
     t.boolean "finished", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "informed", default: 0
+    t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -53,12 +55,23 @@ ActiveRecord::Schema.define(version: 2020_03_04_113005) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "praises", force: :cascade do |t|
+    t.bigint "goal_id"
+    t.integer "praised"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_praises_on_goal_id"
+  end
+
   create_table "timelines", force: :cascade do |t|
     t.text "content"
     t.bigint "group_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "goal_id"
+    t.boolean "cheered", default: false
+    t.index ["goal_id"], name: "index_timelines_on_goal_id"
     t.index ["group_id"], name: "index_timelines_on_group_id"
     t.index ["user_id"], name: "index_timelines_on_user_id"
   end
@@ -90,6 +103,9 @@ ActiveRecord::Schema.define(version: 2020_03_04_113005) do
   add_foreign_key "boards", "groups"
   add_foreign_key "comments", "boards"
   add_foreign_key "comments", "groups"
+  add_foreign_key "goals", "users"
+  add_foreign_key "praises", "goals"
+  add_foreign_key "timelines", "goals"
   add_foreign_key "timelines", "groups"
   add_foreign_key "timelines", "users"
   add_foreign_key "user_group_relations", "groups"

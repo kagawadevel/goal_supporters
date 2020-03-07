@@ -11,14 +11,22 @@ class TimelinesController < ApplicationController
 
   def new
     @timeline = Timeline.new(group_id: params[:group_id])
+    @my_goals= current_user.goals
   end
 
   def create
     @timeline = Timeline.new(timeline_params)
-    if @timeline.save
-      redirect_to group_path(@timeline.group_id), notice: "報告しました"
+    my_goal = @timeline.goal
+    now = Time.now
+    if my_goal.updated_at.tomorrow < now
+      if @timeline.save
+        my_goal.update(informed: my_goal.informed + 1)
+        redirect_to group_path(@timeline.group_id), notice: "報告しました"
+      else
+
+      end
     else
-      render 'new'
+      redirect_to group_path(@timeline.group_id), notice: "その目標は前回の報告からまだ２４時間が経過していません"
     end
   end
 
@@ -41,7 +49,7 @@ class TimelinesController < ApplicationController
   private
 
   def timeline_params
-    params.require(:timeline).permit(:content, :group_id, :user_id)
+    params.require(:timeline).permit(:content, :group_id, :user_id, :goal_id)
   end
 
   def set_timeline
