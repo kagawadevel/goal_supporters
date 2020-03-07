@@ -13,7 +13,11 @@
             <td><%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %></td>
             <td><%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
           <% else %>
-            <td><%= link_to 'いいね！', praise_path(timeline.goal.id, group_id: timeline.group.id), method: :patch, class: "btn btn-info" %></td>
+            <% if timeline.cheered == false %>
+              <td><%= link_to 'いいね！', praise_path(timeline.goal.id, timeline_id: timeline.id, group_id: timeline.group.id), method: :patch, class: "btn btn-info" %></td>
+            <% else %>
+              <td><p>既にいいね！されています</p></td>
+            <% end %>
           <% end %>
         </tr>
     <% end %>
