@@ -11,6 +11,7 @@ class TimelinesController < ApplicationController
 
   def new
     @timeline = Timeline.new(group_id: params[:group_id])
+    @my_goals= current_user.goals
   end
 
   def create
@@ -41,7 +42,7 @@ class TimelinesController < ApplicationController
   private
 
   def timeline_params
-    params.require(:timeline).permit(:content, :group_id, :user_id)
+    params.require(:timeline).permit(:content, :group_id, :user_id, :goal_id)
   end
 
   def set_timeline

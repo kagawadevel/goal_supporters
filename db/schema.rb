@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_132325) do
+ActiveRecord::Schema.define(version: 2020_03_07_024801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_03_04_132325) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "goal_id"
+    t.index ["goal_id"], name: "index_timelines_on_goal_id"
     t.index ["group_id"], name: "index_timelines_on_group_id"
     t.index ["user_id"], name: "index_timelines_on_user_id"
   end
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_132325) do
   add_foreign_key "comments", "groups"
   add_foreign_key "goals", "users"
   add_foreign_key "praises", "goals"
+  add_foreign_key "timelines", "goals"
   add_foreign_key "timelines", "groups"
   add_foreign_key "timelines", "users"
   add_foreign_key "user_group_relations", "groups"

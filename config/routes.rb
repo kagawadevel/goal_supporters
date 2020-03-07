@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :boards
   resources :comments
   resources :user_group_relations, only: %i[index create destroy]
+  resources :praises, only: %i[update]
 end

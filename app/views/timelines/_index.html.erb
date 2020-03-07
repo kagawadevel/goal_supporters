@@ -6,11 +6,15 @@
     <table class="table table-hover">
     <% timelines.each do |timeline| %>
         <tr>
-        <td><p><strong>投稿者：</strong><%= timeline.user.name %></p></td>
+          <td><p><strong><%= timeline.user.name %></strong>さんの<strong>「<%= timeline.goal.name %>」</strong>に関する投稿です</p></td>
           <td><p><strong>投稿内容：</strong><%= timeline.content %></p></td>
-          <td><%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %></td>
-          <td><%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %></td>
-          <td><%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+          <% if timeline.user.id == current_user.id %>
+            <td><%= link_to '確認', timeline_path(timeline.id), class: "btn btn-info" %></td>
+            <td><%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %></td>
+            <td><%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+          <% else %>
+            <td><%= link_to 'いいね！', praise_path(timeline.goal.id, group_id: timeline.group.id), method: :patch, class: "btn btn-info" %></td>
+          <% end %>
         </tr>
     <% end %>
     </table>

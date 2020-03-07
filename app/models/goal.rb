@@ -23,6 +23,7 @@
 class Goal < ApplicationRecord
 
   has_many :praises, dependent: :destroy
+  has_many :timelines, dependent: :destroy
   belongs_to :user
 
   validates :name, presence: true, length: { maximum: 30 }

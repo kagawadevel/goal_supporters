@@ -19,10 +19,9 @@
 
   <%= f.hidden_field :group_id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-
-  <div>
-    <p>投稿に関連する目標をラジオボタンで表示（あとで機能追加）</p>
-  </div>
+  <br>
+  <p>今回報告する目標を下の選択肢から選んでください</p>
+  <%= f.collection_select(:goal_id, my_goals, :id, :name  ) %>
 
   <div>
     <%= f.submit '送信' %>
