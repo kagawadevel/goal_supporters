@@ -3,6 +3,7 @@
 # Table name: timelines
 #
 #  id         :bigint           not null, primary key
+#  cheered    :boolean          default("false")
 #  content    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
