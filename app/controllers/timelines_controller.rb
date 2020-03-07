@@ -16,10 +16,17 @@ class TimelinesController < ApplicationController
 
   def create
     @timeline = Timeline.new(timeline_params)
-    if @timeline.save
-      redirect_to group_path(@timeline.group_id), notice: "報告しました"
+    my_goal = @timeline.goal
+    now = Time.now
+    if my_goal.updated_at.tomorrow < now
+      if @timeline.save
+        my_goal.update(informed: my_goal.informed + 1)
+        redirect_to group_path(@timeline.group_id), notice: "報告しました"
+      else
+
+      end
     else
-      render 'new'
+      redirect_to group_path(@timeline.group_id), notice: "その目標は前回の報告からまだ２４時間が経過していません"
     end
   end
 

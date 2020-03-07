@@ -6,6 +6,7 @@
 #  count      :integer
 #  detail     :string
 #  finished   :boolean          default("false")
+#  informed   :integer          default("0")
 #  name       :string
 #  past       :integer
 #  created_at :datetime         not null
