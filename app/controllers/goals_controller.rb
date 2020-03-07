@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: [:show, :edit, :destroy, :update]
+  before_action :set_goal, only: [:show, :edit, :destroy, :update, :finished]
   before_action :authenticate_user!
 
   def index
@@ -7,6 +7,9 @@ class GoalsController < ApplicationController
   end
 
   def show
+    created = Date.parse(@goal.created_at.to_s)
+    @past = (Date.today - created).to_i
+    @praised_count = @goal.praises[0].praised
   end
 
   def new
@@ -37,6 +40,16 @@ class GoalsController < ApplicationController
   def destroy
     @goal.destroy
     redirect_to goals_path
+  end
+
+  def finished
+    if @goal.finished == false
+       @goal.update(finished: true, updated_at: @goal.updated_at)
+       redirect_to goal_path(@goal), notice: "目標を達成しました！"
+    else
+      @goal.update(finished: false, updated_at: @goal.updated_at)
+      redirect_to goal_path(@goal), notice: "目標を未達成にもどしました"
+    end
   end
 
   private

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   root 'groups#index'
-  resources :goals
+  resources :goals do
+    patch :finished, on: :member
+  end
   resources :users
   resources :groups
   resources :timelines

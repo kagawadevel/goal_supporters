@@ -3,7 +3,34 @@
 <div>
   <p>目標名: <%= @goal.name %></p>
   <p>目標紹介: <%= @goal.detail %></p>
+</div>
 
+<div>
+  <% if @past == 0 %>
+    <p>目標を作成して１日目です</p>
+  <% else %>
+    <p>経過日数：　<%= @past %>日</p>
+    <p>実践割合（報告回数/経過日数　 ：　<%= @goal.informed/@past %></p>
+  <% end %>
+</div>
+
+<div>
+  <% if @praised_count == 0 %>
+    <p>まだいいね！されていません</p>
+  <% else %>
+    <p>いいね！された回数　：　<%= @praised_count %>回</p>
+  <% end %>
+</div>
+
+<div>
   <%= link_to "目標情報を編集する", edit_goal_path(@goal) %>
   <%= link_to "目標情報を削除する", @goal, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
+</div>
+
+<div>
+  <% if @goal.finished == false %>
+    <%= link_to '目標を達成済みにする',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to '目標を未達成に戻す',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
+  <% end %>
 </div>
