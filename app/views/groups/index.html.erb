@@ -1,21 +1,31 @@
 <h1>グループ一覧</h1>
 
-<table class="table table-hover">
-<% @groups.each do |group| %>
-  <% if UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id) %>
-  <% else %>
-    <tr>
-      <td>
-        <div>
-            <p><strong>グループ名：</strong><%= group.name %></p>
-        </div>
-      </td>
-      <td>
-        <div>
-          <%= link_to 'グループの詳細', group_path(group.id), class: "btn btn-info" %>
-        </div>
-      </td>
-    </tr>
-  <% end %>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name, "グループ名から探す" %>
+  <%= f.search_field :name_cont %>
 
+
+
+  <%= f.submit "検索" %>
 <% end %>
+
+
+<table class="table table-hover">
+  <% @searched_groups.each do |group| %>
+    <% if UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id) %>
+    <% else %>
+      <tr>
+        <td>
+          <div>
+              <p><strong>グループ名：</strong><%= group.name %></p>
+          </div>
+        </td>
+        <td>
+          <div>
+            <%= link_to 'グループの詳細', group_path(group.id), class: "btn btn-info" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

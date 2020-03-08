@@ -1,6 +1,7 @@
 class TimelinesController < ApplicationController
   before_action :set_timeline, only: [:show, :edit, :destroy, :update]
   before_action :authenticate_user!
+  before_action :group_joined?, only: %i[new create edit update]
 
   def index
     @timelines = Timeline.all

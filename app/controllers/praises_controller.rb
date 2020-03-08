@@ -1,5 +1,6 @@
 class PraisesController < ApplicationController
   before_action :authenticate_user!
+  before_action :group_joined?, only: %i[update]
 
 
   def update

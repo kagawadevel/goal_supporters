@@ -3,7 +3,8 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = Group.all
+    @q = Group.ransack(params[:q])
+    @searched_groups = @q.result(distinct: true)
   end
 
   def show
@@ -51,4 +52,5 @@ class GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
   end
+
 end
