@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    if @group.save
+    if @group.save!
       current_user.user_group_relations.create(group_id: @group.id)
       redirect_to @group, notice: "グループを作成しました"
     else
@@ -46,11 +46,12 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduce)
+    params.require(:group).permit(:name, :introduce, :owner_id)
   end
 
   def set_group
     @group = Group.find(params[:id])
   end
+
 
 end
