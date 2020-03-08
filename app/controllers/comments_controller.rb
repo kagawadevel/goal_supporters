@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
   before_action :authenticate_user!
+  before_action :comment_group_joined?, only: %i[create destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -27,5 +28,14 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def comment_group_joined?
+    group = Group.find_by(id: params[:comment][:group_id])
+    if group.users.where(id: current_user.id).present?
+    else
+      flash[:notice] = 'グループに参加していなければそのアクションはできません'
+      redirect_to group, danger: 'グループに参加していなければそのアクションはできません'
+    end
   end
 end

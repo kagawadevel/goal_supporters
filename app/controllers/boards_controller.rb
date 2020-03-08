@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :destroy, :update]
   before_action :authenticate_user!
+  before_action :group_joined?, only: %i[new create edit update destroy]
 
   def index
     @boards = Board.all
