@@ -11,15 +11,21 @@
   <%= link_to 'グループに参加する',  user_group_relations_path(group_id: @group.id), class: "btn btn-primary", method: :post %>
 <% end %>
 
+<div>
+<%= link_to '活動を報告する', controller: "timelines", action: "new", group_id: @group.id, user_id: current_user.id, class: "btn btn-primary" %>
+</div>
+
 <div class="group-timeline">
-<%= link_to '活動を報告する', controller: "timelines", action: "new", group_id: @group.id, user_id: current_user.id %>
 <%= render partial: 'timelines/index', locals: { timelines: @timelines } %>
 </div>
 
-<div class="group-board">
+<div>
 <%= link_to '掲示板を新しく作成する', controller: "boards", action: "new", group_id: @group.id %>
+</div>
+
+<div class="group-board">
 <%= render partial: 'boards/index', locals: { boards: @boards } %>
 </div>
 
-  <%= link_to "グループ情報を編集する", edit_group_path(@group) %>
-  <%= link_to "グループ情報を削除する", @group, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
+  <%= link_to "グループ情報を編集する", edit_group_path(@group), class: "btn btn-danger" %>
+  <%= link_to "グループ情報を削除する", @group, method: :delete, data: { confirm: '本当に削除してもいいですか？' }, class: "btn btn-danger" %>

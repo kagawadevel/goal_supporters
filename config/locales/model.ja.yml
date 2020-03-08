@@ -1,31 +1,34 @@
 ja:
   activerecord:
-    errors:
-      models:
-        comment:
-          attributes:
-            content:
-              blank: "空欄です"
     models:
-      blog: "ブログ"
-      user: "ユーザー"
-      comment:
-        attributes:
-          content: "本文"
+      user: ユーザー
+      group: グループ
+      timeline: タイムライン
+      goal: 目標
+      board: 掲示板
+      praise: いいね！
+      comment: コメント
     attributes:
-      blog:
-        title: "タイトル"
-        content: "内容"
-      contact:
-        name: "名前"
-        email: "メールアドレス"
-        content: "内容"
       user:
-        title: "タイトル"
-        name: "名前"
-        email: "メールアドレス"
-        content: "内容"
-        current_password: "現在のパスワード"
-        password: "パスワード"
-        password_confirmation: "確認用パスワード"
-        remember_me: "ログインを記憶"
+        name: 名前
+        email: メールアドレス
+        profile_image: プロフィール画像
+        introduce: 紹介文
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+      group:
+        name: グループ名
+        group_image: グループ画像
+        introduce: グループ紹介文
+      timeline:
+        content: 本文
+      goal:
+        name: 目標名
+        detail: 詳細
+      board:
+        title: タイトル
+        detail: 詳細
+      comment:
+        content: 本文

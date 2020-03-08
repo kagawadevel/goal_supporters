@@ -30,7 +30,9 @@ class GoalsController < ApplicationController
   end
 
   def update
+    before_updated_at = @goal.updated_at
     if @goal.update(goal_params)
+      @goal.update(updated_at: before_updated_at)
       redirect_to goal_path(@goal), notice: "ユーザー情報を更新しました"
     else
       render 'edit'
