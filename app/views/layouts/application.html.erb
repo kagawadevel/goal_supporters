@@ -13,20 +13,28 @@
     <div class="container">
       <% if user_signed_in? %>
         <header>
-          <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-              <li class="nav-item"><%= link_to 'マイページ', user_path(current_user), class: 'navbar-brand' %></li>
-              <li class="nav-item"><%= link_to '目標一覧', goals_path, class: 'navbar-brand' %></li>
-              <li class="nav-item"><%= link_to '参加可能なグループ一覧', groups_path, class: 'navbar-brand' %></li>
-              <li class="nav-item"><%= link_to '新規目標作成', new_goal_path, class: 'navbar-brand' %></li>
-              <li class="nav-item"><%= link_to '新規グループ作成', new_group_path, class: 'navbar-brand' %></li>
-              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-brand'%></li>
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item active"><%= link_to 'マイページ', user_path(current_user), class: 'navbar-brand' %></li>
+                <li class="nav-item active"><%= link_to '目標一覧', goals_path, class: 'navbar-brand' %></li>
+                <li class="nav-item active"><%= link_to '参加可能なグループ一覧', groups_path, class: 'navbar-brand' %></li>
+                <li class="nav-item active"><%= link_to '新規目標作成', new_goal_path, class: 'navbar-brand' %></li>
+                <li class="nav-item active"><%= link_to '新規グループ作成', new_group_path, class: 'navbar-brand' %></li>
+                <li class="nav-item active"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-brand'%></li>
+              </ul>
+            </div>
           </nav>
         </header>
       <% else %>
         <header>
-          <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <li><%= link_to "新規登録", new_user_registration_path %></li>
-            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item active"><%= link_to "新規登録", new_user_registration_path %></li>
+                <li class="nav-item active"><%= link_to "ログイン", new_user_session_path %></li>
+              </ul>
+            </div>
           </nav>
         </header>
       <% end %>
