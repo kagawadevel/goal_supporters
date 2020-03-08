@@ -10,8 +10,8 @@
           <td><p><strong>投稿内容：</strong><%= timeline.content %></p></td>
           <% if timeline.user.id == current_user.id %>
             <td><%= link_to '確認', goal_path(timeline.goal.id), class: "btn btn-info" %></td>
-            <td><%= link_to '編集', edit_timeline_path(timeline.id), class: "btn btn-info" %></td>
-            <td><%= link_to '削除', timeline, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+            <td><%= link_to '編集', edit_timeline_path(timeline.id, group_id: timeline.group.id), class: "btn btn-info" %></td>
+            <td><%= link_to '削除', timeline_path(timeline, group_id: timeline.group.id), class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
           <% else %>
             <% if timeline.cheered == false %>
               <td><%= link_to '確認', goal_path(timeline.goal.id), class: "btn btn-info" %></td>

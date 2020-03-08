@@ -14,14 +14,19 @@
 
   <div>
     <%= f.label :name, '投稿内容' %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </div>
 
   <%= f.hidden_field :group_id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <br>
-  <p>今回報告する目標を下の選択肢から選んでください</p>
-  <%= f.collection_select(:goal_id, my_goals, :id, :name  ) %>
+
+  <% if action_name == "edit" %>
+    <p>目標名　：　<strong><%= timeline.goal.name %></strong></p>
+  <% elsif action_name == "new" %>
+    <p>今回報告する目標を下の選択肢から選んでください</p>
+    <%= f.collection_select(:goal_id, my_goals, :id, :name  ) %>
+  <% end %>
 
   <div>
     <%= f.submit '送信' %>
