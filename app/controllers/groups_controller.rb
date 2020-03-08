@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 
   def index
     @q = Group.ransack(params[:q])
-    @searched_groups = @q.result(distinct: true)
+    @searched_groups = @q.result(distinct: true).page(params[:page]).per(3)
   end
 
   def show
