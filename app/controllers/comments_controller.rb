@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
       flash[:error_messages] = @comment.errors.full_messages
       @comments = Comment.where(board_id: params[:comment][:board_id])
       @board = Board.find(params[:comment][:board_id])
+      @comment.update(content: "")
       render template: "boards/show"
     end
   end
