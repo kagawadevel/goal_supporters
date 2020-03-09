@@ -16,7 +16,12 @@ class TimelinesController < ApplicationController
       if group.users.where(id: current_user.id).present?
         if current_user.goals.present?
           @timeline = Timeline.new(group_id: params[:group_id])
-          @my_goals= current_user.goals
+          @my_goals = current_user.goals.where(informed: 0)or(current_user.goals.where('updated_at < ?', Time.zone.now.yesterday))
+          if @my_goals.present?
+            @my_goals
+          else
+            redirect_to group_path(@timeline.group_id), notice: "全ての目標が２４時間以内に報告済みです"
+          end
         else
           flash[:notice] = '目標をひとつも登録していません'
           redirect_to group
