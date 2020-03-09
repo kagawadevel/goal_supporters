@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :destroy, :update]
   before_action :authenticate_user!
+  before_action :group_owner?, only: %i[edit update destroy]
 
   def index
     @q = Group.ransack(params[:q])
@@ -53,5 +54,11 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 
+  def group_owner?
+    if @group.owner_id == current_user.id
+    else
+      redirect_to @group, notice: 'グループ作成者でないとその操作はできません'
+    end
+  end
 
 end
