@@ -3,6 +3,7 @@ class BoardsController < ApplicationController
   before_action :authenticate_user!
   before_action :group_joined?, only: %i[new]
   before_action :board_group_joined?, only: %i[create]
+  before_action :board_owner?, only: %i[edit update destroy]
 
   def index
     @boards = Board.all
@@ -19,7 +20,7 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    if @board.save
+    if @board.save!
       redirect_to group_path(@board.group_id), notice: "掲示板を作成しました"
     else
       render 'new'
@@ -57,7 +58,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :detail, :group_id)
+    params.require(:board).permit(:title, :detail, :group_id, :owner_id)
   end
 
   def set_board
@@ -71,4 +72,13 @@ class BoardsController < ApplicationController
       redirect_to group, notice: 'グループに参加していなければそのアクションはできません'
     end
   end
+
+  def board_owner?
+    group = Group.find_by(id: params[:id])
+    if @board.owner_id == current_user.id
+    else
+      redirect_to group, notice: '掲示板作成者でないとその操作はできません'
+    end
+  end
+
 end
