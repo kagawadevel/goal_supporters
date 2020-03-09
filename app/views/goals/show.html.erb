@@ -22,15 +22,17 @@
   <% end %>
 </div>
 
-<div>
-  <%= link_to "目標情報を編集する", edit_goal_path(@goal) %>
-  <%= link_to "目標情報を削除する", @goal, method: :delete, data: { confirm: '本当に削除してもいいですか？' } %>
-</div>
-
-<div>
-  <% if @goal.finished == false %>
-    <%= link_to '目標を達成済みにする',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to '目標を未達成に戻す',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% if @goal.user.id == current_user.id %>
+  <div>
+    <%= link_to "目標情報を編集する", edit_goal_path(@goal), class: "btn btn-primary" %>
+    <%= link_to "目標情報を削除する", @goal, method: :delete, data: { confirm: '本当に削除してもいいですか？' }, class: "btn btn-danger"  %>
+  </div>
+  <br>
+  <div>
+    <% if @goal.finished == false %>
+      <%= link_to '目標を達成済みにする',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to '目標を未達成に戻す',  finished_goal_path(@goal), method: :patch, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

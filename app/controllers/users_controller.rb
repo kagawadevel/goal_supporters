@@ -10,7 +10,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if user_signed_in?
+      redirect_to current_user, notice: '既にログインしています'
+    else
+      @user = User.new
+    end
   end
 
   def create

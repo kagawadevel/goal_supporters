@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  root 'groups#index'
+  root to: 'goals#index'
   resources :goals do
     patch :finished, on: :member
   end

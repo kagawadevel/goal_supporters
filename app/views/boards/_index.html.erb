@@ -6,9 +6,11 @@
     <% boards.each do |board| %>
         <tr>
           <td><p><strong>掲示板名：</strong><%= board.title %></p></td>
+          <% if board.owner_id == current_user.id %>
+            <td><%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %><td>
+            <td><%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %><td>
+          <% end %>
           <td><%= link_to '確認', board_path(board.id, board_id: board.id, group_id: board.group.id, user_id: current_user.id), class: "btn btn-info" %><td>
-          <td><%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %><td>
-          <td><%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %><td>
         </td>
       <% end %>
     </table>

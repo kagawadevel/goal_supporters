@@ -22,7 +22,7 @@
     <%= f.text_area :introduce %>
   </div>
 
-
+  <%= f.hidden_field :owner_id, value: current_user.id %>
 
   <div>
     <%= f.submit '送信' %>

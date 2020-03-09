@@ -24,6 +24,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Timeline < ApplicationRecord
+  validates :content, presence: true
+  validates :goal_id, presence: true
   belongs_to :group
   belongs_to :user
   belongs_to :goal

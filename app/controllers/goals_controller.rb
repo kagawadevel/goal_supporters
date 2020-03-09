@@ -27,10 +27,16 @@ class GoalsController < ApplicationController
   end
 
   def edit
+    if @goal.user.id == current_user.id
+    else
+      redirect_to @goal, notice: 'そのアクションはできません'
+    end
   end
 
   def update
+    before_updated_at = @goal.updated_at
     if @goal.update(goal_params)
+      @goal.update(updated_at: before_updated_at)
       redirect_to goal_path(@goal), notice: "ユーザー情報を更新しました"
     else
       render 'edit'
@@ -38,17 +44,25 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal.destroy
-    redirect_to goals_path
+    if @goal.user.id == current_user.id
+      @goal.destroy
+      redirect_to goals_path
+    else
+      redirect_to @goal, notice: 'そのアクションはできません'
+    end
   end
 
   def finished
-    if @goal.finished == false
-       @goal.update(finished: true, updated_at: @goal.updated_at)
-       redirect_to goal_path(@goal), notice: "目標を達成しました！"
+    if @goal.user.id == current_user.id
+      if @goal.finished == false
+         @goal.update(finished: true, updated_at: @goal.updated_at)
+         redirect_to goal_path(@goal), notice: "目標を達成しました！"
+      else
+        @goal.update(finished: false, updated_at: @goal.updated_at)
+        redirect_to goal_path(@goal), notice: "目標を未達成にもどしました"
+      end
     else
-      @goal.update(finished: false, updated_at: @goal.updated_at)
-      redirect_to goal_path(@goal), notice: "目標を未達成にもどしました"
+      redirect_to @goal, notice: 'そのアクションはできません'
     end
   end
 

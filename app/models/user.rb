@@ -36,4 +36,6 @@ class User < ApplicationRecord
   has_many :user_group_relations, dependent: :destroy
   has_many :groups, through: :user_group_relations, source: :group
   has_many :goals, dependent: :destroy
+  has_many :my_groups, class_name: 'Group', foreign_key: 'owner_id'
+  has_many :my_boards, class_name: 'Board', foreign_key: 'owner_id'
 end
