@@ -18,5 +18,5 @@ class Group < ApplicationRecord
   has_many :comments
   has_many :user_group_relations, dependent: :destroy
   has_many :users, through: :user_group_relations, source: :user
-  belongs_to :user, class_name: 'User', foreign_key: 'id'
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 end
