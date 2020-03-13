@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    if @group.save!
+    if @group.save
       current_user.user_group_relations.create(group_id: @group.id)
       redirect_to @group, notice: "グループを作成しました"
     else
