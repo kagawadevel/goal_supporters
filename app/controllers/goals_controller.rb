@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     if @goal.save
       Praise.create(goal_id: @goal.id, praised: 0)
-      redirect_to @goal, notice: "ユーザーを作成しました"
+      redirect_to @goal, notice: "目標を作成しました"
     else
       render 'new'
     end

@@ -15,7 +15,7 @@ RSpec.describe User, type: :system do
         fill_in 'user_password_confirmation', with: 'password'
         click_on 'サインアップ'
         click_on 'マイページ'
-        expect(page).to have_content 'サインアップテストユーザー'
+        expect(page).to have_content 'ユーザー名: サインアップテストユーザー'
       end
     end
   end
@@ -50,6 +50,7 @@ RSpec.describe User, type: :system do
       end
     end
   end
+
 
 
 end
