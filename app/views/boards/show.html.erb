@@ -3,7 +3,9 @@
 
 <%= render 'shared/error_messages' %>
 
-<%= render partial: 'comments/comment_form', locals: { comment: @comment } %>
+<% if @board.group.user_group_relations.where(user_id: current_user.id).present? %>
+  <%= render partial: 'comments/comment_form', locals: { comment: @comment } %>
+<% end %>
 
 <div class="board-comment">
   <%= render partial: 'comments/index', locals: { comments: @comments } %>
