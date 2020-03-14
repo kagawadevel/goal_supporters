@@ -8,7 +8,9 @@
         <tr>
           <td><p><strong>投稿者：</strong><%= comment.user.name %></p></td>
           <td><p><strong>投稿内容：</strong><%= comment.content %></p></td>
-          <td><%= link_to '削除', comment, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+          <% if comment.user_id == current_user.id %>
+              <td><%= link_to '削除', comment_path(comment, group_id: comment.group.id, board_id: comment.board.id), class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </table>

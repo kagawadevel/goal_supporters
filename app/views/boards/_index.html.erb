@@ -10,7 +10,7 @@
             <td><%= link_to '編集', edit_board_path(board.id), class: "btn btn-info" %><td>
             <td><%= link_to '削除', board, class: "btn btn-danger", method: :delete, data: { confirm: '削除してもいいですか？' } %><td>
           <% end %>
-          <td><%= link_to '確認', board_path(board.id, board_id: board.id, group_id: board.group.id, user_id: current_user.id), class: "btn btn-info" %><td>
+          <td><%= link_to '掲示板を確認', board_path(board.id, board_id: board.id, group_id: board.group.id, user_id: current_user.id), class: "btn btn-info" %><td>
         </td>
       <% end %>
     </table>

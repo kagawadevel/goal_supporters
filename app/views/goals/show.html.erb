@@ -10,13 +10,13 @@
     <p>目標を作成して１日目です</p>
   <% else %>
     <p>経過日数：　<%= @past %>日</p>
-    <p>実践割合（報告回数/経過日数　 ：　<%= @goal.informed/@past %></p>
+    <p>実践割合（報告回数/経過日数)　：<%= @goal.informed/@past*100 %>%</p>
   <% end %>
 </div>
 
 <div>
   <% if @praised_count == 0 %>
-    <p>まだいいね！されていません</p>
+    <p>いいね！されていません</p>
   <% else %>
     <p>いいね！された回数　：　<%= @praised_count %>回</p>
   <% end %>
