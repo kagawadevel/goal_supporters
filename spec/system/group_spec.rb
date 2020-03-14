@@ -64,7 +64,6 @@ RSpec.describe Group, type: :system do
         click_on '送信'
         click_on 'グループ情報を削除する'
         page.driver.browser.switch_to.alert.accept
-        save_and_open_page
         group = Group.find_by(name: 'グループ削除テストグループ')
         expect(group).to eq nil
       end
