@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @timelines = Timeline.where(group_id: @group.id).where('updated_at >= ?', 3.day.ago)
+    @timelines = Timeline.where(group_id: @group.id).where('updated_at >= ?', 3.day.ago).order(updated_at: :desc).to_a
     @boards = Board.where(group_id: @group.id)
     @join = UserGroupRelation.find_by(user_id: current_user.id, group_id: params[:id])
   end

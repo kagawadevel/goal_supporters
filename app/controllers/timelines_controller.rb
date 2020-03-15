@@ -1,22 +1,15 @@
 class TimelinesController < ApplicationController
-  before_action :set_timeline, only: [:show, :edit, :destroy, :update]
+  before_action :set_timeline, only: [:edit, :destroy, :update]
   before_action :authenticate_user!
   before_action :timeline_group_joined?, only: %i[create update]
   before_action :timeline_group_joined2?, only: %i[edit destroy]
-
-  def index
-    @timelines = Timeline.where('updated_at >= ?', 3.day.ago)
-  end
-
-  def show
-  end
 
   def new
     group = Group.find_by(id: params[:group_id])
       if group.users.where(id: current_user.id).present?
         if current_user.goals.present?
           @timeline = Timeline.new(group_id: params[:group_id])
-          @my_goals = current_user.goals.where(informed: 0)or(current_user.goals.where('updated_at < ?', Time.zone.now.yesterday))
+          @my_goals = current_user.goals.where('informed = ? or updated_at < ?', 0, Time.zone.now.yesterday)
           if @my_goals.present?
             @my_goals
           else

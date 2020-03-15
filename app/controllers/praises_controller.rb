@@ -10,7 +10,9 @@ class PraisesController < ApplicationController
     else
       my_praised.update(praised: my_praised.praised + 1)
       my_timeline = Timeline.find_by(id: params[:timeline_id])
+      before_time = my_timeline.updated_at
       my_timeline.update(cheered: true)
+      my_timeline.update(updated_at: before_time)
       redirect_to group_path(params[:group_id]), flash:  { notice: 'いいね！しました' }
     end
   end

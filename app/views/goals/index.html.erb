@@ -1,14 +1,19 @@
 <h1>目標一覧</h1>
 
-<table class="table table-hover">
-<% @goals.each do |goal| %>
-  <tr>
-    <td><div>
-      <p><strong>目標名：</strong><%= goal.name %></p>
-    </div>
-    <div>
-      <%= link_to '確認', goal_path(goal.id), class: "btn btn-info" %>
-    </div>
-    </td>
-  </tr>
-<% end %>
+<% if @goals.present? %>
+  <table class="table table-hover">
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><div>
+          <p><strong>目標名：</strong><%= goal.name %></p>
+        </div>
+        <div>
+          <%= link_to '詳細確認', goal_path(goal.id), class: "btn btn-info" %>
+        </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>
+    <p>まだ目標がひとつも登録されていません。目標を登録しましょう！</p>
+ <% end %>

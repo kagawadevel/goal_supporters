@@ -20,7 +20,7 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
-    if @board.save!
+    if @board.save
       redirect_to group_path(@board.group_id), notice: "掲示板を作成しました"
     else
       render 'new'
@@ -38,7 +38,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to board_path(@board), notice: "グループを編集しました"
+      redirect_to group_path(@board.group_id), notice: "掲示板を編集しました"
     else
       render 'edit'
     end

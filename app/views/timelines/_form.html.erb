@@ -13,8 +13,8 @@
 <%= form_with( model: timeline, local: true ) do |f| %>
 
   <div>
-    <%= f.label :content, '投稿内容' %>
-    <%= f.text_area :content %>
+    <%= f.label :content, '報告内容' %>
+    <%= f.text_area :content, size: "20x10", class: "form-control" %>
   </div>
 
   <%= f.hidden_field :group_id %>

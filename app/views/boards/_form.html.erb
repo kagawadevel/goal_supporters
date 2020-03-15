@@ -19,7 +19,7 @@
 
   <div>
     <%= f.label :detail, '掲示板詳細' %>
-    <%= f.text_field :detail %>
+    <%= f.text_area :detail, size: "20x10", class: "form-control" %>
   </div>
 
   <%= f.hidden_field :group_id %>
