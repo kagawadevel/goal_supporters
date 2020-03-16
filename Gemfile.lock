@@ -55,6 +55,7 @@ GEM
     autoprefixer-rails (9.7.4)
       execjs
     bcrypt (3.1.11)
+    bcrypt_pbkdf (1.0.1)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -128,6 +129,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    ed25519 (1.2.4)
     erubi (1.9.0)
     execjs (2.7.0)
     factory_bot (5.1.1)
@@ -335,6 +337,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bcrypt (= 3.1.11)
+  bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
@@ -351,6 +354,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  ed25519 (>= 1.2, < 2.0)
   factory_bot_rails
   jbuilder (~> 2.5)
   jquery-rails
